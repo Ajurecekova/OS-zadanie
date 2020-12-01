@@ -1,0 +1,16 @@
+#!/bin/bash
+echo "set terminal wxt"
+echo "set xdata time"
+echo 'set timefmt "%H-%M"'
+echo 'set xtics format "%H:%M"'
+echo "plot '-' using 1:2 with boxes"
+while read LINE
+do
+    temp=$(echo "$LINE" | cut -f 6 -d ,)
+    tim=$(echo "$LINE" | cut -f 3 -d ,)
+    HH=$(echo "$tim" | cut -c12-13)
+    MM=$(echo "$tim" | cut -c15-16)
+    echo "$HH-$MM $temp"
+
+done
+echo "e"
